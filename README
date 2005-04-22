@@ -33,6 +33,18 @@ FUNCTIONS
     Returns the string as a convenience if it is a valid identifier, or
     "undef" if not.
 
+  _CLASS $string
+    The "_CLASS" function is intended to be imported into your package, and
+    provides a convenient way to test to see if a value is a string that is
+    a valid Perl class.
+
+    This function only checks that the format is valid, not that the class
+    is actually loaded. It also assumes "normalised" form, and does not
+    accept class names such as "::Foo" or "D'Oh".
+
+    Returns the string as a convenience if it is a valid class name, or
+    "undef" if not.
+
   _SCALAR \$scalar
     The "_SCALAR" function is intended to be imported into your package, and
     provides a convenient way to test for a raw and unblessed "SCALAR"

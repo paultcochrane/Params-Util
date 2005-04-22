@@ -15,7 +15,7 @@ BEGIN {
 	}
 }
 
-use Test::More tests => 324;
+use Test::More tests => 366;
 use Scalar::Util 'refaddr';
 use Params::Util ();
 
@@ -49,6 +49,7 @@ null( Params::Util::_IDENTIFIER(sub () { 1 }), '...::_IDENTIFIER(CODE) returns u
 null( Params::Util::_IDENTIFIER([]),           '...::_IDENTIFIER(ARRAY) returns undef' );
 null( Params::Util::_IDENTIFIER(\""),          '...::_IDENTIFIER(null constant) returns undef' );
 null( Params::Util::_IDENTIFIER(\"foo"),       '...::_IDENTIFIER(SCALAR) returns undef' );
+null( Params::Util::_IDENTIFIER("Foo::Bar"),   '...::_IDENTIFIER(CLASS) returns undef' );
 
 # Test good things against the actual function (carefully)
 foreach my $ident ( qw{foo _foo foo1 __foo_1} ) {
@@ -60,21 +61,74 @@ use_ok( 'Params::Util', '_IDENTIFIER' );
 ok( defined *_IDENTIFIER{CODE}, '_IDENTIFIER imported ok' );
 
 # Test bad things against the actual function
-dies( "_IDENTIFIER()", qr/Not enough arguments/, '...::_SCALAR() dies' );
-null( _IDENTIFIER(undef),        '...::_IDENTIFIER(undef) returns undef' );
-null( _IDENTIFIER(''),           '...::_IDENTIFIER(nullstring) returns undef' );
-null( _IDENTIFIER(1),            '...::_IDENTIFIER(number) returns undef' );
-null( _IDENTIFIER(' foo'),       '...::_IDENTIFIER(string) returns undef' );
-null( _IDENTIFIER({ foo => 1 }), '...::_IDENTIFIER(HASH) returns undef' );
-null( _IDENTIFIER(sub () { 1 }), '...::_IDENTIFIER(CODE) returns undef' );
-null( _IDENTIFIER([]),           '...::_IDENTIFIER(ARRAY) returns undef' );
-null( _IDENTIFIER(\""),          '...::_IDENTIFIER(null constant) returns undef' );
-null( _IDENTIFIER(\"foo"),       '...::_IDENTIFIER(SCALAR) returns undef' );
+dies( "_IDENTIFIER()", qr/Not enough arguments/, '...::_IDENTIFIER() dies' );
+null( _IDENTIFIER(undef),        '_IDENTIFIER(undef) returns undef' );
+null( _IDENTIFIER(''),           '_IDENTIFIER(nullstring) returns undef' );
+null( _IDENTIFIER(1),            '_IDENTIFIER(number) returns undef' );
+null( _IDENTIFIER(' foo'),       '_IDENTIFIER(string) returns undef' );
+null( _IDENTIFIER({ foo => 1 }), '_IDENTIFIER(HASH) returns undef' );
+null( _IDENTIFIER(sub () { 1 }), '_IDENTIFIER(CODE) returns undef' );
+null( _IDENTIFIER([]),           '_IDENTIFIER(ARRAY) returns undef' );
+null( _IDENTIFIER(\""),          '_IDENTIFIER(null constant) returns undef' );
+null( _IDENTIFIER(\"foo"),       '_IDENTIFIER(SCALAR) returns undef' );
+null( _IDENTIFIER("Foo::Bar"),   '_IDENTIFIER(CLASS) returns undef' );
 
 # Test good things against the actual function (carefully)
 foreach my $ident ( qw{foo _foo foo1 __foo_1} ) {
 	is( _IDENTIFIER($ident), $ident, "...::_IDENTIFIER('$ident') returns ok" );
 }
+
+
+
+
+
+#####################################################################
+# Tests for _CLASS
+
+# Test bad things against the actual function
+dies( "Params::Util::_CLASS()", qr/Not enough arguments/, '...::_CLASS() dies' );
+null( Params::Util::_CLASS(undef),        '...::_CLASS(undef) returns undef' );
+null( Params::Util::_CLASS(''),           '...::_CLASS(nullstring) returns undef' );
+null( Params::Util::_CLASS(1),            '...::_CLASS(number) returns undef' );
+null( Params::Util::_CLASS(' foo'),       '...::_CLASS(string) returns undef' );
+null( Params::Util::_CLASS({ foo => 1 }), '...::_CLASS(HASH) returns undef' );
+null( Params::Util::_CLASS(sub () { 1 }), '...::_CLASS(CODE) returns undef' );
+null( Params::Util::_CLASS([]),           '...::_CLASS(ARRAY) returns undef' );
+null( Params::Util::_CLASS(\""),          '...::_CLASS(null constant) returns undef' );
+null( Params::Util::_CLASS(\"foo"),       '...::_CLASS(SCALAR) returns undef' );
+null( Params::Util::_CLASS("D'oh"),       '...::_CLASS(bad class) returns undef' );
+null( Params::Util::_CLASS("::Foo"),      '...::_CLASS(bad class) returns undef' );
+
+# Test good things against the actual function (carefully)
+foreach my $ident ( qw{foo _foo foo1 __foo_1 Foo::Bar _Foo::Baaar::Baz} ) {
+	is( Params::Util::_CLASS($ident), $ident, "...::_CLASS('$ident') returns ok" );
+}
+
+# Import the function
+use_ok( 'Params::Util', '_CLASS' );
+ok( defined *_CLASS{CODE}, '_CLASS imported ok' );
+
+# Test bad things against the actual function
+dies( "_CLASS()", qr/Not enough arguments/, '...::_CLASS() dies' );
+null( _CLASS(undef),        '_CLASS(undef) returns undef' );
+null( _CLASS(''),           '_CLASS(nullstring) returns undef' );
+null( _CLASS(1),            '_CLASS(number) returns undef' );
+null( _CLASS(' foo'),       '_CLASS(string) returns undef' );
+null( _CLASS({ foo => 1 }), '_CLASS(HASH) returns undef' );
+null( _CLASS(sub () { 1 }), '_CLASS(CODE) returns undef' );
+null( _CLASS([]),           '_CLASS(ARRAY) returns undef' );
+null( _CLASS(\""),          '_CLASS(null constant) returns undef' );
+null( _CLASS(\"foo"),       '_CLASS(SCALAR) returns undef' );
+null( _CLASS("D'oh"),       '_CLASS(bad class) returns undef' );
+null( _CLASS("::Foo"),      '_CLASS(bad class) returns undef' );
+
+# Test good things against the actual function (carefully)
+foreach my $ident ( qw{foo _foo foo1 __foo_1 Foo::Bar _Foo::Baaar::Baz} ) {
+	is( _CLASS($ident), $ident, "...::_CLASS('$ident') returns ok" );
+}
+
+
+
 
 
 #####################################################################

@@ -41,14 +41,14 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK};
 BEGIN {
-	$VERSION   = '0.01';
+	$VERSION   = '0.02';
 
 	@EXPORT_OK = qw{
-		_IDENTIFIER
+		_IDENTIFIER _CLASS
 		_SCALAR     _SCALAR0
 		_ARRAY      _ARRAY0
 		_HASH       _HASH0
-		_INSTANCE   _SET      _SET0
+		_INSTANCE   _SET   _SET0
 		};
 }
 
@@ -74,6 +74,27 @@ C<undef> if not.
 
 sub _IDENTIFIER ($) {
 	(defined $_[0] and ! ref $_[0] and $_[0] =~ m/^[^\W\d]\w*$/s) ? $_[0] : undef;
+}
+
+=pod
+
+=head2 _CLASS $string
+
+The C<_CLASS> function is intended to be imported into your
+package, and provides a convenient way to test to see if a value is
+a string that is a valid Perl class.
+
+This function only checks that the format is valid, not that the
+class is actually loaded. It also assumes "normalised" form, and does
+not accept class names such as C<::Foo> or C<D'Oh>.
+
+Returns the string as a convenience if it is a valid class name, or
+C<undef> if not.
+
+=cut
+
+sub _CLASS ($) {
+	(defined $_[0] and ! ref $_[0] and $_[0] =~ m/^[^\W\d]\w*(?:::[^\W\d]\w*)*$/s) ? $_[0] : undef;
 }
 
 =pod
