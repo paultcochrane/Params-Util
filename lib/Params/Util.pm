@@ -41,13 +41,14 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK};
 BEGIN {
-	$VERSION   = '0.02';
+	$VERSION   = '0.03';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS
 		_SCALAR     _SCALAR0
 		_ARRAY      _ARRAY0
 		_HASH       _HASH0
+		_CODE
 		_INSTANCE   _SET   _SET0
 		};
 }
@@ -216,6 +217,24 @@ if the value provided is not an C<HASH> reference.
 
 sub _HASH0 ($) {
 	ref $_[0] eq 'HASH' ? $_[0] : undef;
+}
+
+
+=pod
+
+=head2 _CODE $value
+
+The C<_CODE> function is intended to be imported into your package,
+and provides a convenient way to test for a raw and unblessed
+C<CODE> reference.
+
+Returns the C<CODE> reference itself as a convenience, or C<undef>
+if the value provided is not an C<CODE> reference.
+
+=cut
+
+sub _CODE ($) {
+	ref $_[0] eq 'CODE' ? $_[0] : undef;
 }
 
 =pod

@@ -15,7 +15,7 @@ BEGIN {
 	}
 }
 
-use Test::More tests => 366;
+use Test::More tests => 396;
 use Scalar::Util 'refaddr';
 use Params::Util ();
 
@@ -419,6 +419,59 @@ is( ref(_HASH0($hash)), 'HASH', '_HASH0 returns an ARRAY ok' );
 is( refaddr(_HASH0($hash)),
     refaddr($hash),
     '_HASH0($hash) returns the same reference');
+
+
+
+
+
+#####################################################################
+# Tests for _CODE
+
+my $code = sub () { 1 };
+sub testcode { 3 };
+
+# Import the function
+use_ok( 'Params::Util', '_CODE' );
+ok( defined *_CODE{CODE}, '_CODE imported ok' );
+
+# Test bad things against the actual function
+dies( "Params::Util::_CODE();", qr/Not enough arguments/, '...::_CODE() dies' );
+null( Params::Util::_CODE(undef),        '...::_CODE(undef) returns undef' );
+null( Params::Util::_CODE(''),           '...::_CODE(nullstring) returns undef' );
+null( Params::Util::_CODE(1),            '...::_CODE(number) returns undef' );
+null( Params::Util::_CODE('foo'),        '...::_CODE(string) returns undef' );
+null( Params::Util::_CODE(\'foo'),       '...::_CODE(SCALAR) returns undef' );
+null( Params::Util::_CODE([ 'foo' ]),    '...::_CODE(ARRAY) returns undef' );
+null( Params::Util::_CODE({}),           '...::_CODE(empty HASH) returns undef' );
+
+# Test bad things against the actual function
+dies( "_CODE();", qr/Not enough arguments/, '_CODE() dies' );
+null( _CODE(undef),        '_CODE(undef) returns undef' );
+null( _CODE(''),           '_CODE(nullstring) returns undef' );
+null( _CODE(1),            '_CODE(number) returns undef' );
+null( _CODE('foo'),        '_CODE(string) returns undef' );
+null( _CODE(\'foo'),       '_CODE(SCALAR) returns undef' );
+null( _CODE([]),           '_CODE(ARRAY) returns undef' );
+null( _CODE({}),           '...::_CODE(empty HASH) returns undef' );
+
+# Test good things against the actual function
+is( ref(Params::Util::_CODE(sub { 2 })), 'CODE', '...::_CODE(anon) returns ok'   );
+is( ref(Params::Util::_CODE($code)),     'CODE', '...::_CODE(ref) returns ok'    );
+is( ref(Params::Util::_CODE(\&testsub)), 'CODE', '...::_CODE(\&func) returns ok' );
+is( refaddr(Params::Util::_CODE($code)), refaddr($code),
+    '...::_CODE(ref) returns the same reference');
+is( refaddr(Params::Util::_CODE(\&testsub)), refaddr(\&testsub),
+    '...::_CODE(\&func) returns the same reference');
+
+# Test good things against the imported function
+is( ref(_CODE(sub { 2 })), 'CODE', '_CODE(anon) returns ok'   );
+is( ref(_CODE($code)),     'CODE', '_CODE(ref) returns ok'    );
+is( ref(_CODE(\&testsub)), 'CODE', '_CODE(\&func) returns ok' );
+is( refaddr(_CODE($code)), refaddr($code),
+    '_CODE(ref) returns the same reference');
+is( refaddr(_CODE(\&testsub)), refaddr(\&testsub),
+    '_CODE(\&func) returns the same reference');
+
 
 
 

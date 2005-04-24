@@ -1,5 +1,8 @@
 Revision history for Perl extension Params::Util
 
+0.03 Sun Apr 24 2005
+	- Added the _CODE function
+
 0.02 Fri Apr 22 2005
 	- Added the _CLASS function
 

@@ -111,6 +111,14 @@ FUNCTIONS
     Returns the "HASH" reference itself as a convenience, or "undef" if the
     value provided is not an "HASH" reference.
 
+  _CODE $value
+    The "_CODE" function is intended to be imported into your package, and
+    provides a convenient way to test for a raw and unblessed "CODE"
+    reference.
+
+    Returns the "CODE" reference itself as a convenience, or "undef" if the
+    value provided is not an "CODE" reference.
+
   _INSTANCE $object, $class
     The "_INSTANCE" function is intended to be imported into your package,
     and provides a convenient way to test for an object of a particular
