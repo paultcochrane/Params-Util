@@ -12,9 +12,9 @@ Params::Util - Simple standalone param-checking functions
   use Params::Util qw{_SCALAR _HASH _INSTANCE};
   
   sub foo {
-      my $image   = _SCALAR(shift)   or return undef;
-      my $options = _HASH(shift)     or return undef;
-      my $object  = _INSTANCE(shift) or return undef;
+      my $object  = _INSTANCE(shift, 'Foo') or return undef;
+      my $image   = _SCALAR(shift)          or return undef;
+      my $options = _HASH(shift)            or return undef;
       # etc...
   }
 
@@ -41,7 +41,7 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK};
 BEGIN {
-	$VERSION   = '0.03';
+	$VERSION   = '0.04';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS

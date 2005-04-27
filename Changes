@@ -1,5 +1,8 @@
 Revision history for Perl extension Params::Util
 
+0.04 Wed Apr 27 2005
+	- Fixed a POD bug in the synopsis
+
 0.03 Sun Apr 24 2005
 	- Added the _CODE function
 

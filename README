@@ -6,9 +6,9 @@ SYNOPSIS
       use Params::Util qw{_SCALAR _HASH _INSTANCE};
   
       sub foo {
-          my $image   = _SCALAR(shift)   or return undef;
-          my $options = _HASH(shift)     or return undef;
-          my $object  = _INSTANCE(shift) or return undef;
+          my $object  = _INSTANCE(shift, 'Foo') or return undef;
+          my $image   = _SCALAR(shift)          or return undef;
+          my $options = _HASH(shift)            or return undef;
           # etc...
       }
 
