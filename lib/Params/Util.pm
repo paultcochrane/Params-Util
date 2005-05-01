@@ -41,10 +41,11 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK};
 BEGIN {
-	$VERSION   = '0.04';
+	$VERSION   = '0.05';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS
+		_POSINT
 		_SCALAR     _SCALAR0
 		_ARRAY      _ARRAY0
 		_HASH       _HASH0
@@ -96,6 +97,23 @@ C<undef> if not.
 
 sub _CLASS ($) {
 	(defined $_[0] and ! ref $_[0] and $_[0] =~ m/^[^\W\d]\w*(?:::[^\W\d]\w*)*$/s) ? $_[0] : undef;
+}
+
+=pod
+
+=head2 _POSINT $integer
+
+The C<_POSINT> function is intended to be imported into your
+package, and provides a convenient way to test to see if a value is
+a positive integer (of any length).
+
+Returns the value as a convience, or C<undef> if the value is not a
+positive integer.
+
+=cut
+
+sub _POSINT ($) {
+	(defined $_[0] and ! ref $_[0] and $_[0] =~ m/^[1-9]\d*$/) ? $_[0] : undef;
 }
 
 =pod

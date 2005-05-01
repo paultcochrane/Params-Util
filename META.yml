@@ -1,5 +1,5 @@
 name: Params-Util
-version: 0.04
+version: 0.05
 abstract: Utility funcions to aid in parameter checking
 author: Adam Kennedy <cpan@ali.as>
 license: perl

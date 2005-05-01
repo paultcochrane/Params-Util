@@ -45,6 +45,14 @@ FUNCTIONS
     Returns the string as a convenience if it is a valid class name, or
     "undef" if not.
 
+  _POSINT $integer
+    The "_POSINT" function is intended to be imported into your package, and
+    provides a convenient way to test to see if a value is a positive
+    integer (of any length).
+
+    Returns the value as a convience, or "undef" if the value is not a
+    positive integer.
+
   _SCALAR \$scalar
     The "_SCALAR" function is intended to be imported into your package, and
     provides a convenient way to test for a raw and unblessed "SCALAR"

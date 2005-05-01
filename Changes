@@ -1,5 +1,8 @@
 Revision history for Perl extension Params::Util
 
+0.05 Mon May  2 2005
+	- Added _POSINT
+
 0.04 Wed Apr 27 2005
 	- Fixed a POD bug in the synopsis
 

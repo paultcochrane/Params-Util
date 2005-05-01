@@ -15,7 +15,7 @@ BEGIN {
 	}
 }
 
-use Test::More tests => 396;
+use Test::More tests => 436;
 use Scalar::Util 'refaddr';
 use Params::Util ();
 
@@ -109,7 +109,7 @@ use_ok( 'Params::Util', '_CLASS' );
 ok( defined *_CLASS{CODE}, '_CLASS imported ok' );
 
 # Test bad things against the actual function
-dies( "_CLASS()", qr/Not enough arguments/, '...::_CLASS() dies' );
+dies( "_CLASS()", qr/Not enough arguments/, '_CLASS() dies' );
 null( _CLASS(undef),        '_CLASS(undef) returns undef' );
 null( _CLASS(''),           '_CLASS(nullstring) returns undef' );
 null( _CLASS(1),            '_CLASS(number) returns undef' );
@@ -124,7 +124,60 @@ null( _CLASS("::Foo"),      '_CLASS(bad class) returns undef' );
 
 # Test good things against the actual function (carefully)
 foreach my $ident ( qw{foo _foo foo1 __foo_1 Foo::Bar _Foo::Baaar::Baz} ) {
-	is( _CLASS($ident), $ident, "...::_CLASS('$ident') returns ok" );
+	is( _CLASS($ident), $ident, "_CLASS('$ident') returns ok" );
+}
+
+
+
+
+
+#####################################################################
+# Tests for _POSINT
+
+# Test bad things against the actual function
+dies( "Params::Util::_POSINT()", qr/Not enough arguments/, '...::_POSINT() dies' );
+null( Params::Util::_POSINT(undef),        '...::_POSINT(undef) returns undef' );
+null( Params::Util::_POSINT(''),           '...::_POSINT(nullstring) returns undef' );
+null( Params::Util::_POSINT(' foo'),       '...::_POSINT(string) returns undef' );
+null( Params::Util::_POSINT({ foo => 1 }), '...::_POSINT(HASH) returns undef' );
+null( Params::Util::_POSINT(sub () { 1 }), '...::_POSINT(CODE) returns undef' );
+null( Params::Util::_POSINT([]),           '...::_POSINT(ARRAY) returns undef' );
+null( Params::Util::_POSINT(\""),          '...::_POSINT(null constant) returns undef' );
+null( Params::Util::_POSINT(\"foo"),       '...::_POSINT(SCALAR) returns undef' );
+null( Params::Util::_POSINT("D'oh"),       '...::_POSINT(bad class) returns undef' );
+null( Params::Util::_POSINT(-1),           '...::_POSINT(negative) returns undef' );
+null( Params::Util::_POSINT(0),            '...::_POSINT(zero) returns undef' );
+null( Params::Util::_POSINT("+1"),           '...::_POSINT(explicit positive) returns undef' );
+null( Params::Util::_POSINT("02"),         '...::_POSINT(zero lead) returns undef' );
+
+# Test good things against the actual function (carefully)
+foreach my $id ( qw{1 2 10 123456789} ) {
+	is( Params::Util::_POSINT($id), $id, "...::_POSINT('$id') returns ok" );
+}
+
+# Import the function
+use_ok( 'Params::Util', '_POSINT' );
+ok( defined *_POSINT{CODE}, '_POSINT imported ok' );
+
+# Test bad things against the actual function
+dies( "_POSINT()", qr/Not enough arguments/, '_POSINT() dies' );
+null( _POSINT(undef),        '_POSINT(undef) returns undef' );
+null( _POSINT(''),           '_POSINT(nullstring) returns undef' );
+null( _POSINT(' foo'),       '_POSINT(string) returns undef' );
+null( _POSINT({ foo => 1 }), '_POSINT(HASH) returns undef' );
+null( _POSINT(sub () { 1 }), '_POSINT(CODE) returns undef' );
+null( _POSINT([]),           '_POSINT(ARRAY) returns undef' );
+null( _POSINT(\""),          '_POSINT(null constant) returns undef' );
+null( _POSINT(\"foo"),       '_POSINT(SCALAR) returns undef' );
+null( _POSINT("D'oh"),       '_POSINT(bad class) returns undef' );
+null( _POSINT(-1),           '_POSINT(negative) returns undef' );
+null( _POSINT(0),            '_POSINT(zero) returns undef' );
+null( _POSINT("+1"),           '_POSINT(explicit positive) returns undef' );
+null( _POSINT("02"),         '_POSINT(zero lead) returns undef' );
+
+# Test good things against the actual function (carefully)
+foreach my $id ( qw{1 2 10 123456789} ) {
+	is( _POSINT($id), $id, "_POSINT('$id') returns ok" );
 }
 
 
