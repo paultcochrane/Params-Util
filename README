@@ -166,7 +166,13 @@ FUNCTIONS
 TO DO
     - More comprehensive tests for _SET and _SET0
 
-    - Would be nice if someone would re-implement in XS for me? :)
+    - Would be nice if someone would re-implement in XS for me? (done)
+
+    - Would be even nicer if someone would demonstrate how the hell to build
+    a Module::Install dist of the ::Util dual Perl/XS type. :/
+
+    - Implement an assertion-like version of this module, that dies on
+    error.
 
 SUPPORT
     Bugs should be reported via the CPAN bug tracker at
@@ -176,12 +182,13 @@ SUPPORT
     For other issues, contact the author.
 
 AUTHOR
-    Adam Kennedy (Maintainer), <http://ali.as/>, cpan@ali.as
+    Adam Kennedy <cpan@ali.as>, <http://ali.as/>
 
 COPYRIGHT
-    Copyright 2005 Adam Kennedy. All rights reserved. This program is free
-    software; you can redistribute it and/or modify it under the same terms
-    as Perl itself.
+    Copyright 2005 Adam Kennedy. All rights reserved.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
     The full text of the license can be found in the LICENSE file included
     with this module.

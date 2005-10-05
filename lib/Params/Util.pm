@@ -41,7 +41,7 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK};
 BEGIN {
-	$VERSION   = '0.05';
+	$VERSION   = '0.06';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS
@@ -336,7 +336,13 @@ sub _SET0 ($$) {
 
 - More comprehensive tests for _SET and _SET0
 
-- Would be nice if someone would re-implement in XS for me? :)
+- Would be nice if someone would re-implement in XS for me? (done)
+
+- Would be even nicer if someone would demonstrate how the hell to
+build a Module::Install dist of the ::Util dual Perl/XS type. :/
+
+- Implement an assertion-like version of this module, that dies on
+error.
 
 =head1 SUPPORT
 
@@ -348,11 +354,12 @@ For other issues, contact the author.
 
 =head1 AUTHOR
 
-Adam Kennedy (Maintainer), L<http://ali.as/>, cpan@ali.as
+Adam Kennedy E<lt>cpan@ali.asE<gt>, L<http://ali.as/>
 
 =head1 COPYRIGHT
 
 Copyright 2005 Adam Kennedy. All rights reserved.
+
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 

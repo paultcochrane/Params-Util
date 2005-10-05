@@ -1,5 +1,9 @@
 Revision history for Perl extension Params::Util
 
+0.06 Wed Oct  5 2005
+	- Rereleasing with newer Module::Install that correctly
+	  includes ExtUtils::AutoInstall.
+
 0.05 Mon May  2 2005
 	- Added _POSINT
 
