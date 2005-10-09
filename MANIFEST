@@ -18,4 +18,5 @@ META.yml
 README
 t/01_compile.t
 t/02_util.t
+t/03_all.t
 t/99_pod.t

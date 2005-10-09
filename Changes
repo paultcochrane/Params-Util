@@ -1,5 +1,8 @@
 Revision history for Perl extension Params::Util
 
+0.07 Mon Oct 10 2005
+	- Adding the :ALL tag
+
 0.06 Wed Oct  5 2005
 	- Rereleasing with newer Module::Install that correctly
 	  includes ExtUtils::AutoInstall.

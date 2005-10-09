@@ -4,6 +4,9 @@ NAME
 SYNOPSIS
       # Import some functions
       use Params::Util qw{_SCALAR _HASH _INSTANCE};
+   
+      # Or if you are lazy :)
+      use Params::Util ':ALL';
   
       sub foo {
           my $object  = _INSTANCE(shift, 'Foo') or return undef;
@@ -177,7 +180,7 @@ TO DO
 SUPPORT
     Bugs should be reported via the CPAN bug tracker at
 
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Param-Util>
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Util>
 
     For other issues, contact the author.
 

@@ -10,6 +10,9 @@ Params::Util - Simple standalone param-checking functions
 
   # Import some functions
   use Params::Util qw{_SCALAR _HASH _INSTANCE};
+   
+  # Or if you are lazy :)
+  use Params::Util ':ALL';
   
   sub foo {
       my $object  = _INSTANCE(shift, 'Foo') or return undef;
@@ -39,9 +42,9 @@ use strict;
 use base 'Exporter';
 use Scalar::Util ();
 
-use vars qw{$VERSION @EXPORT_OK};
+use vars qw{$VERSION @EXPORT_OK %EXPORT_TAGS};
 BEGIN {
-	$VERSION   = '0.06';
+	$VERSION   = '0.07';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS
@@ -52,6 +55,8 @@ BEGIN {
 		_CODE
 		_INSTANCE   _SET   _SET0
 		};
+
+	%EXPORT_TAGS = (ALL => \@EXPORT_OK);
 }
 
 
@@ -348,7 +353,7 @@ error.
 
 Bugs should be reported via the CPAN bug tracker at
 
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Param-Util>
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Params-Util>
 
 For other issues, contact the author.
 
