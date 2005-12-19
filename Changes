@@ -1,5 +1,9 @@
 Revision history for Perl extension Params::Util
 
+0.08 Mon Dec 19 2005
+	- Moved from old CVS repository to newer SVN repository
+	- Added _CALLABLE (provided Ricardo Signes)
+
 0.07 Mon Oct 10 2005
 	- Adding the :ALL tag
 

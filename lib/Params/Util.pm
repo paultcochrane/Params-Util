@@ -4,14 +4,14 @@ package Params::Util;
 
 =head1 NAME
 
-Params::Util - Simple standalone param-checking functions
+Params::Util - Simple, compact and correct param-checking functions
 
 =head1 SYNOPSIS
 
   # Import some functions
   use Params::Util qw{_SCALAR _HASH _INSTANCE};
-   
-  # Or if you are lazy :)
+  
+  # If you are lazy, or need a lot of them...
   use Params::Util ':ALL';
   
   sub foo {
@@ -24,15 +24,21 @@ Params::Util - Simple standalone param-checking functions
 =head1 DESCRIPTION
 
 C<Params::Util> provides a basic set of importable functions that makes
-checking parameters a hell of a lot easier.
+checking parameters a hell of a lot easier
+
+While they can be (and are) used in other contexts, the main point
+behind this module is that the functions both Do What You Mean, and
+Do The Right Thing, so they are most useful when you are getting
+params passed into your code from someone and/or somewhere else
+and you can't really trust the quality.
 
 The functions provided by C<Params::Util> check in the most strictly
 correct manner, and in should not be fooled by odd cases.
 
 To use, simply load the module providing the functions you want to use
-as arguments (as shown in the SYNOPSIS). For now, to aid in clarity and
-code maintenance, you will need to name the functions explicitly, rather
-than just importing everything.
+as arguments (as shown in the SYNOPSIS).
+
+To aid in maintainability, C<Params::Util> will never export by default.
 
 =head1 FUNCTIONS
 
@@ -40,11 +46,12 @@ than just importing everything.
 
 use strict;
 use base 'Exporter';
+use overload     ();
 use Scalar::Util ();
 
 use vars qw{$VERSION @EXPORT_OK %EXPORT_TAGS};
 BEGIN {
-	$VERSION   = '0.07';
+	$VERSION   = '0.08';
 
 	@EXPORT_OK = qw{
 		_IDENTIFIER _CLASS
@@ -52,8 +59,8 @@ BEGIN {
 		_SCALAR     _SCALAR0
 		_ARRAY      _ARRAY0
 		_HASH       _HASH0
-		_CODE
-		_INSTANCE   _SET   _SET0
+		_CODE       _CALLABLE
+		_INSTANCE   _SET       _SET0
 		};
 
 	%EXPORT_TAGS = (ALL => \@EXPORT_OK);
@@ -242,7 +249,6 @@ sub _HASH0 ($) {
 	ref $_[0] eq 'HASH' ? $_[0] : undef;
 }
 
-
 =pod
 
 =head2 _CODE $value
@@ -258,6 +264,32 @@ if the value provided is not an C<CODE> reference.
 
 sub _CODE ($) {
 	ref $_[0] eq 'CODE' ? $_[0] : undef;
+}
+
+=pod
+
+=head2 _CALLABLE $value
+
+The C<_CALLABLE> is the more generic version of C<_CODE>. Unlike C<_CODE>,
+which checks for an explicit C<CODE> reference, the C<_CALLABLE> function
+also includes things that act like them, such as blessed objects that
+overload C<'&{}'>.
+
+Note that in the case of objects overloaded with '&{}', you will almost
+always end up also testing it in 'bool' context. As such, you will most
+often want to make sure your class has the following to allow it to evaluate
+to true in boolean context.
+
+  # Always evaluate to true in boolean context
+  use overload 'bool' => sub () { 1 };
+
+Returns the callable value as a convenience, or C<undef> if the
+value provided is not callable.
+
+=cut
+
+sub _CALLABLE {
+  (Scalar::Util::reftype($_[0])||'') eq 'CODE' or Scalar::Util::blessed($_[0]) and overload::Method($_[0],'&{}') ? $_[0] : undef;
 }
 
 =pod

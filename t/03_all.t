@@ -11,11 +11,11 @@ BEGIN {
 	unless ( $ENV{HARNESS_ACTIVE} ) {
 		require FindBin;
 		chdir ($FindBin::Bin = $FindBin::Bin); # Avoid a warning
-		lib->import( catdir( updir(), updir(), 'modules') );
+		lib->import( catdir( updir(), 'lib' ) );
 	}
 }
 
-use Test::More tests => 14;
+use Test::More tests => 15;
 use_ok( 'Params::Util', ':ALL' );
 
 
@@ -35,6 +35,7 @@ ok( defined *_ARRAY0{CODE},     '_ARRAY0 imported ok'     );
 ok( defined *_HASH{CODE},       '_HASH imported ok'       );
 ok( defined *_HASH0{CODE},      '_HASH0 imported ok'      );
 ok( defined *_CODE{CODE},       '_CODE imported ok'       );
+ok( defined *_CALLABLE{CODE},   '_CALLABLE imported ok'   );
 ok( defined *_INSTANCE{CODE},   '_INSTANCE imported ok'   );
 ok( defined *_SET{CODE},        '_SET imported ok'        );
 ok( defined *_SET0{CODE},       '_SET0 imported ok'       );

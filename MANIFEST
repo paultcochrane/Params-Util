@@ -1,5 +1,5 @@
 Changes
-inc/ExtUtils/AutoInstall.pm
+inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Base.pm
@@ -19,4 +19,5 @@ README
 t/01_compile.t
 t/02_util.t
 t/03_all.t
+t/04_callable.t
 t/99_pod.t

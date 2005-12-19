@@ -1,11 +1,11 @@
 NAME
-    Params::Util - Simple standalone param-checking functions
+    Params::Util - Simple, compact and correct param-checking functions
 
 SYNOPSIS
       # Import some functions
       use Params::Util qw{_SCALAR _HASH _INSTANCE};
-   
-      # Or if you are lazy :)
+  
+      # If you are lazy, or need a lot of them...
       use Params::Util ':ALL';
   
       sub foo {
@@ -17,15 +17,21 @@ SYNOPSIS
 
 DESCRIPTION
     "Params::Util" provides a basic set of importable functions that makes
-    checking parameters a hell of a lot easier.
+    checking parameters a hell of a lot easier
+
+    While they can be (and are) used in other contexts, the main point
+    behind this module is that the functions both Do What You Mean, and Do
+    The Right Thing, so they are most useful when you are getting params
+    passed into your code from someone and/or somewhere else and you can't
+    really trust the quality.
 
     The functions provided by "Params::Util" check in the most strictly
     correct manner, and in should not be fooled by odd cases.
 
     To use, simply load the module providing the functions you want to use
-    as arguments (as shown in the SYNOPSIS). For now, to aid in clarity and
-    code maintenance, you will need to name the functions explicitly, rather
-    than just importing everything.
+    as arguments (as shown in the SYNOPSIS).
+
+    To aid in maintainability, "Params::Util" will never export by default.
 
 FUNCTIONS
   _IDENTIFIER $string
@@ -129,6 +135,23 @@ FUNCTIONS
 
     Returns the "CODE" reference itself as a convenience, or "undef" if the
     value provided is not an "CODE" reference.
+
+  _CALLABLE $value
+    The "_CALLABLE" is the more generic version of "_CODE". Unlike "_CODE",
+    which checks for an explicit "CODE" reference, the "_CALLABLE" function
+    also includes things that act like them, such as blessed objects that
+    overload '&{}'.
+
+    Note that in the case of objects overloaded with '&{}', you will almost
+    always end up also testing it in 'bool' context. As such, you will most
+    often want to make sure your class has the following to allow it to
+    evaluate to true in boolean context.
+
+      # Always evaluate to true in boolean context
+      use overload 'bool' => sub () { 1 };
+
+    Returns the callable value as a convenience, or "undef" if the value
+    provided is not callable.
 
   _INSTANCE $object, $class
     The "_INSTANCE" function is intended to be imported into your package,
