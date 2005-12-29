@@ -1,16 +1,16 @@
-name: Params-Util
-version: 0.08
-abstract: Utility funcions to aid in parameter checking
-author: Adam Kennedy <cpan@ali.as>
-license: perl
-distribution_type: module
+abstract: 'Simple, compact and correct param-checking functions'
+author: 'Adam Kennedy <cpan@ali.as>, L<http://ali.as/>'
 build_requires:
+  File::Spec: 0.80
   Test::More: 0.47
-  File::Spec: 0.82
-requires:
-  perl: 5.005
-  Scalar::Util: 1.11
+distribution_type: module
+generated_by: Module::Install version 0.50
+license: perl
+name: Params-Util
 no_index:
   directory:
     - inc
-generated_by: Module::Install version 0.41
+    - t
+requires:
+  Scalar::Util: 1.11
+version: 0.09
