@@ -4,7 +4,7 @@ build_requires:
   File::Spec: 0.80
   Test::More: 0.47
 distribution_type: module
-generated_by: Module::Install version 0.50
+generated_by: Module::Install version 0.52
 license: perl
 name: Params-Util
 no_index:
@@ -13,4 +13,4 @@ no_index:
     - t
 requires:
   Scalar::Util: 1.11
-version: 0.09
+version: 0.10
