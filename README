@@ -136,6 +136,11 @@ FUNCTIONS
     Returns the "ARRAY" reference itself as a convenience, or "undef" if the
     value provided is not an "ARRAY" reference.
 
+  _ARRAYLIKE $value
+    The "_ARRAYLIKE" function tests whether a given scalar value can respond
+    to array dereferencing. If it can, the value is returned. If it cannot,
+    "_ARRAYLIKE" returns "undef".
+
   _HASH $value
     The "_HASH" function is intended to be imported into your package, and
     provides a convenient way to test for a raw and unblessed "HASH"
@@ -157,6 +162,11 @@ FUNCTIONS
 
     Returns the "HASH" reference itself as a convenience, or "undef" if the
     value provided is not an "HASH" reference.
+
+  _HASHLIKE $value
+    The "_HASHLIKE" function tests whether a given scalar value can respond
+    to hash dereferencing. If it can, the value is returned. If it cannot,
+    "_HASHLIKE" returns "undef".
 
   _CODE $value
     The "_CODE" function is intended to be imported into your package, and
@@ -190,6 +200,11 @@ FUNCTIONS
 
     Returns the object itself as a convenience, or "undef" if the value
     provided is not an object of that type.
+
+  _INVOCANT $value
+    This routine tests whether the given value is a valid method invocant.
+    If so, the value itself is returned. Otherwise, "_INVOCANT" returns
+    "undef".
 
   _SET \@array, $class
     The "_SET" function is intended to be imported into your package, and

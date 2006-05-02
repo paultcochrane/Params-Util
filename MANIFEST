@@ -20,4 +20,6 @@ t/01_compile.t
 t/02_util.t
 t/03_all.t
 t/04_callable.t
+t/05_typelike.t
+t/06_invocant.t
 t/99_pod.t
