@@ -1,7 +1,16 @@
 Revision history for Perl extension Params::Util
 
+0.14   Wed 10 May 2006
+	- No features() used in this dist, so removing auto_install
+	- Moved _CALLABLE to _CODELIKE for symmetry reasons. Sorry :(
+	  Immediate doc changover. Silent alias for a month, then
+	  warning alias for 3 months, then full deprecation at the end
+	  of August.
+	- Removed RJBS's use warnings that broke 5.005-compatibility.
+	- Other minor test cleanups.
+
 0.13 Sun May  7 2006
-	- No functional changes
+	# This release contains only build-time changes
 	- Upgrading Module::Install to 0.62 final
 
 0.12 Mon May  1 2006

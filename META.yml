@@ -5,14 +5,15 @@ no_index:
     - t
 generated_by: Module::Install version 0.62
 distribution_type: module
-version: 0.13
+version: 0.14
 name: Params-Util
 author: Adam Kennedy <cpan@ali.as>, L<http://ali.as/>
 license: perl
 build_requires: 
-  Test::More: 0.47
+  Test::More: 0.42
   File::Spec: 0.80
 requires: 
   Scalar::Util: 1.11
-  overload: 0
+  perl: 5.005
+  Exporter: 0
 abstract: Simple, compact and correct param-checking functions

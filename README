@@ -176,9 +176,9 @@ FUNCTIONS
     Returns the "CODE" reference itself as a convenience, or "undef" if the
     value provided is not an "CODE" reference.
 
-  _CALLABLE $value
-    The "_CALLABLE" is the more generic version of "_CODE". Unlike "_CODE",
-    which checks for an explicit "CODE" reference, the "_CALLABLE" function
+  _CODELIKE $value
+    The "_CODELIKE" is the more generic version of "_CODE". Unlike "_CODE",
+    which checks for an explicit "CODE" reference, the "_CODELIKE" function
     also includes things that act like them, such as blessed objects that
     overload '&{}'.
 
@@ -192,6 +192,14 @@ FUNCTIONS
 
     Returns the callable value as a convenience, or "undef" if the value
     provided is not callable.
+
+    Note: This function was formerly known as _CODELIKE but has been renamed
+    for greater symmetry with the other _XXXXLIKE functions.
+
+    It will continue to work silently until end-May 2006, then with a
+    warning until end-August 2006, then will be deprecated.
+
+    I apologise for any inconvenience caused.
 
   _INSTANCE $object, $class
     The "_INSTANCE" function is intended to be imported into your package,
