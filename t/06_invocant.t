@@ -1,20 +1,9 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ();
 use File::Spec::Functions ':ALL';
 BEGIN {
 	$| = 1;
-	unless ( $ENV{HARNESS_ACTIVE} ) {
-		require FindBin;
-		$FindBin::Bin = $FindBin::Bin; # Avoid a warning
-		chdir catdir( $FindBin::Bin, updir() );
-		lib->import(
-			catdir('blib', 'arch'),
-			catdir('blib', 'lib' ),
-			catdir('lib'),
-			);
-	}
 }
 
 use Test::More tests => 9;
@@ -30,7 +19,7 @@ my $pkg    = 'Params::Util::Test::_INVOCANT::Real'; eval "package $pkg;";
 my @data = (# I
   [ undef    , 0, 'undef' ],
   [ 1000    => 0, '1000' ],
-  [ $unpkg  => 0, qq("$unpkg") ],
+  [ $unpkg  => 1, qq("$unpkg") ],
   [ $pkg    => 1, qq("$pkg") ],
   [ []      => 0, '[]' ],
   [ {}      => 0, '{}' ],

@@ -193,13 +193,18 @@ FUNCTIONS
     Returns the callable value as a convenience, or "undef" if the value
     provided is not callable.
 
-    Note: This function was formerly known as _CODELIKE but has been renamed
-    for greater symmetry with the other _XXXXLIKE functions.
+    Note - This function was formerly known as _CODELIKE but has been
+    renamed for greater symmetry with the other _XXXXLIKE functions.
 
     It will continue to work silently until end-May 2006, then with a
     warning until end-August 2006, then will be deprecated.
 
     I apologise for any inconvenience caused.
+
+  _INVOCANT $value
+    This routine tests whether the given value is a valid method invocant.
+    If so, the value itself is returned. Otherwise, "_INVOCANT" returns
+    "undef".
 
   _INSTANCE $object, $class
     The "_INSTANCE" function is intended to be imported into your package,
@@ -208,11 +213,6 @@ FUNCTIONS
 
     Returns the object itself as a convenience, or "undef" if the value
     provided is not an object of that type.
-
-  _INVOCANT $value
-    This routine tests whether the given value is a valid method invocant.
-    If so, the value itself is returned. Otherwise, "_INVOCANT" returns
-    "undef".
 
   _SET \@array, $class
     The "_SET" function is intended to be imported into your package, and
@@ -230,7 +230,7 @@ FUNCTIONS
 
   _SET0 \@array, $class
     The "_SET0" function is intended to be imported into your package, and
-    provides a convenient way to test for set of objects of a particular
+    provides a convenient way to test for a set of objects of a particular
     class in a strictly correct manner, allowing for zero objects.
 
     The set is provided as a reference to an "ARRAY" of objects of the class
@@ -242,12 +242,26 @@ FUNCTIONS
     Returns the "ARRAY" reference itself as a convenience, or "undef" if the
     value provided is not a set of that class.
 
+  _HANDLE
+    EXPERIMENTAL: SUBJECT TO CHANGE OR POSSIBLE REMOVAL
+
+    The "_HANDLE" function is intended to be imported into your package, and
+    provides a convenient way to test whether or not a single scalar value
+    is a file handle.
+
+    Unfortunately, in Perl the definition of a file handle can be a little
+    bit fuzzy, so this function is likely to be somewhat imperfect (at first
+    anyway).
+
+    That said, it is implement as well or better than the other file handle
+    detectors in existance (and we stole from the best of them).
+
 TO DO
     - Add _CAN to help resolve the UNIVERSAL::can debacle
 
     - More comprehensive tests for _SET and _SET0
 
-    - Would be nice if someone would re-implement in XS for me? (donish)
+    - Would be nice if someone would re-implement in XS for me? (done'ish)
 
     - Would be even nicer if someone would demonstrate how the hell to build
     a Module::Install dist of the ::Util dual Perl/XS type. :/
@@ -263,10 +277,13 @@ SUPPORT
     For other issues, contact the author.
 
 AUTHOR
-    Adam Kennedy <cpan@ali.as>, <http://ali.as/>
+    Adam Kennedy <cpan@ali.as>
+
+SEE ALSO
+    <http://ali.as/>
 
 COPYRIGHT
-    Copyright 2005, 2006 Adam Kennedy. All rights reserved.
+    Copyright 2005, 2006 Adam Kennedy.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
