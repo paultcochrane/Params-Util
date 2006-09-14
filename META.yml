@@ -1,18 +1,18 @@
-abstract: 'Simple, compact and correct param-checking functions'
-author: 'Adam Kennedy <cpan@ali.as>'
-build_requires:
+abstract: Simple, compact and correct param-checking functions
+author: Adam Kennedy <cpan@ali.as>
+build_requires: 
   File::Spec: 0.80
   Test::More: 0.42
 distribution_type: module
-generated_by: Module::Install version 0.63
+generated_by: Module::Install version 0.64
 license: perl
 name: Params-Util
-no_index:
-  directory:
+no_index: 
+  directory: 
     - inc
     - t
-requires:
+requires: 
   Exporter: 0
-  Scalar::Util: 1.11
+  Scalar::Util: 1.14
   perl: 5.004
-version: 0.17
+version: 0.18
