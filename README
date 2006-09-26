@@ -182,10 +182,21 @@ FUNCTIONS
     also includes things that act like them, such as blessed objects that
     overload '&{}'.
 
-    Note that in the case of objects overloaded with '&{}', you will almost
-    always end up also testing it in 'bool' context. As such, you will most
-    often want to make sure your class has the following to allow it to
-    evaluate to true in boolean context.
+    Please note that in the case of objects overloaded with '&{}', you will
+    almost always end up also testing it in 'bool' context at some stage.
+
+    For example:
+
+      sub foo {
+          my $coed1 = _CODELIKE(shift) or die "No code param provided";
+          my $code2 = _CODELIKE(shift);
+          if ( $code2 ) {
+               print "Got optional second code param";
+          }
+      }
+
+    As such, you will most likely always want to make sure your class has at
+    least the following to allow it to evaluate to true in boolean context.
 
       # Always evaluate to true in boolean context
       use overload 'bool' => sub () { 1 };
@@ -193,11 +204,11 @@ FUNCTIONS
     Returns the callable value as a convenience, or "undef" if the value
     provided is not callable.
 
-    Note - This function was formerly known as _CODELIKE but has been
+    Note - This function was formerly known as _CALLABLE but has been
     renamed for greater symmetry with the other _XXXXLIKE functions.
 
-    It will continue to work silently until end-May 2006, then with a
-    warning until end-August 2006, then will be deprecated.
+    The use of _CALLABLE has been deprecated. It will continue to work, but
+    with a warning, until end-2006, then will be removed.
 
     I apologise for any inconvenience caused.
 
@@ -269,6 +280,8 @@ TO DO
     - Implement an assertion-like version of this module, that dies on
     error.
 
+    - Implement a Test:: version of this module, for use in testing
+
 SUPPORT
     Bugs should be reported via the CPAN bug tracker at
 
@@ -277,10 +290,10 @@ SUPPORT
     For other issues, contact the author.
 
 AUTHOR
-    Adam Kennedy <cpan@ali.as>
+    Adam Kennedy <adamk@cpan.org>
 
 SEE ALSO
-    <http://ali.as/>
+    Params::Validate, <http://ali.as/>
 
 COPYRIGHT
     Copyright 2005, 2006 Adam Kennedy.
