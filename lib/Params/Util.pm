@@ -65,7 +65,7 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @ISA @EXPORT_OK %EXPORT_TAGS};
 BEGIN {
-	$VERSION   = '0.22';
+	$VERSION   = '0.23';
 	@ISA       = 'Exporter';
 
 	@EXPORT_OK = qw{
@@ -409,14 +409,16 @@ sub _CALLABLE {
 
 =head2 _INVOCANT $value
 
-This routine tests whether the given value is a valid method invocant.  If so,
-the value itself is returned.  Otherwise, C<_INVOCANT> returns C<undef>.
+This routine tests whether the given value is a valid method invocant. This can
+be either an instance of an object, or a class name.
+
+If so, the value itself is returned.  Otherwise, C<_INVOCANT> returns C<undef>.
 
 =cut
 
 sub _INVOCANT {
 	(defined $_[0] and
-		(Scalar::Util::blessed($_[0])
+		(defined Scalar::Util::blessed($_[0])
 		or      
 		# We used to check for stash definedness, but any class-like name is a
 		# valid invocant for UNIVERSAL methods, so we stopped. -- rjbs, 2006-07-02
