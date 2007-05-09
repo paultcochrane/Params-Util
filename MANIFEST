@@ -21,6 +21,12 @@ t/04_codelike.t
 t/05_typelike.t
 t/06_invocant.t
 t/07_handle.t
+t/08_driver.t
 t/99_author.t
+t/driver/A.pm
+t/driver/B.pm
+t/driver/D.pm
+t/driver/E.pm
+t/driver/F.pm
 t/handles/handle.txt
 t/handles/readfile.txt
