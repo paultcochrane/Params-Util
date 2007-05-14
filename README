@@ -84,6 +84,34 @@ FUNCTIONS
     Returns the string as a convenience if it is a valid class name, or
     "undef" if not.
 
+  _CLASSISA $string, $class
+    The "_CLASSISA" function is intended to be imported into your package,
+    and provides a convenient way to test to see if a value is a string that
+    is a particularly class, or a subclass of it.
+
+    This function checks that the format is valid and calls the ->isa method
+    on the class name. It does not check that the class is actually loaded.
+
+    It also assumes "normalised" form, and does not accept class names such
+    as "::Foo" or "D'Oh".
+
+    Returns the string as a convenience if it is a valid class name, or
+    "undef" if not.
+
+  _SUBCLASS $string, $class
+    The "_SUBCLASS" function is intended to be imported into your package,
+    and provides a convenient way to test to see if a value is a string that
+    is a subclass of a specified class.
+
+    This function checks that the format is valid and calls the ->isa method
+    on the class name. It does not check that the class is actually loaded.
+
+    It also assumes "normalised" form, and does not accept class names such
+    as "::Foo" or "D'Oh".
+
+    Returns the string as a convenience if it is a valid class name, or
+    "undef" if not.
+
   _POSINT $integer
     The "_POSINT" function is intended to be imported into your package, and
     provides a convenient way to test to see if a value is a positive
