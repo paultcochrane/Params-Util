@@ -13,10 +13,10 @@ unless ( $ENV{AUTOMATED_TESTING} ) {
 }
 
 # Load the testing modules
-eval "use Test::Pod 1.00 ()";
+eval "use Test::Pod 1.00";
 
 # Can we run the version tests
-eval "require Test::MinimumVersion;";
+eval "use Test::MinimumVersion;";
 
 
 
@@ -67,10 +67,10 @@ ok( 1, "Running author tests" );
 
 # Test POD
 if ( $Test::Pod::VERSION ) {
-	Test::Pod::all_pod_files_ok();
+	all_pod_files_ok();
 }
 
 # Test version
 if ( $Test::MinimumVersion::VERSION and $Test::MinimumVersion::VERSION > 0.05 ) {
-	Test::MinimumVersion::all_minimum_version_from_metayml_ok();
+	all_minimum_version_from_metayml_ok();
 }
