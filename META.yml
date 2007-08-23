@@ -19,4 +19,4 @@ requires:
   Exporter: 0
   Scalar::Util: 1.14
   perl: 5.004
-version: 0.28
+version: 0.29
