@@ -22,7 +22,8 @@ t/05_typelike.t
 t/06_invocant.t
 t/07_handle.t
 t/08_driver.t
-t/99_author.t
+t/98_pod.t
+t/99_pmv.t
 t/driver/A.pm
 t/driver/B.pm
 t/driver/D.pm
