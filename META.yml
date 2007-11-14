@@ -1,11 +1,12 @@
 --- 
 abstract: Simple, compact and correct param-checking functions
-author: Adam Kennedy <adamk@cpan.org>
+author: 
+  - Adam Kennedy <adamk@cpan.org>
 build_requires: 
   File::Spec: 0.80
   Test::More: 0.42
 distribution_type: module
-generated_by: Module::Install version 0.65
+generated_by: Module::Install version 0.68
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -19,4 +20,4 @@ requires:
   Exporter: 0
   Scalar::Util: 1.14
   perl: 5.005
-version: 0.30
+version: 0.31
