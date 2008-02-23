@@ -6,7 +6,7 @@ build_requires:
   File::Spec: 0.80
   Test::More: 0.42
 distribution_type: module
-generated_by: Module::Install version 0.68
+generated_by: Module::Install version 0.680
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -20,4 +20,4 @@ requires:
   Exporter: 0
   Scalar::Util: 1.14
   perl: 5.005
-version: 0.31
+version: 0.32_01

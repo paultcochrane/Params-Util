@@ -1,3 +1,6 @@
+97_meta.t
+98_pod.t
+99_pmv.t
 Changes
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
@@ -16,14 +19,11 @@ README
 t/01_compile.t
 t/02_util.t
 t/03_all.t
-t/04_callable.t
 t/04_codelike.t
 t/05_typelike.t
 t/06_invocant.t
 t/07_handle.t
 t/08_driver.t
-t/98_pod.t
-t/99_pmv.t
 t/driver/A.pm
 t/driver/B.pm
 t/driver/D.pm
