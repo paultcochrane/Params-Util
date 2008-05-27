@@ -1,6 +1,3 @@
-97_meta.t
-98_pod.t
-99_pmv.t
 Changes
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
@@ -24,10 +21,13 @@ t/05_typelike.t
 t/06_invocant.t
 t/07_handle.t
 t/08_driver.t
+t/97_meta.t
+t/98_pod.t
+t/99_pmv.t
 t/driver/A.pm
-t/driver/B.pm
 t/driver/D.pm
 t/driver/E.pm
 t/driver/F.pm
+t/driver/My_B.pm
 t/handles/handle.txt
 t/handles/readfile.txt

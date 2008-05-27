@@ -55,9 +55,7 @@ additions to C<Params::Util> may clash)
 
 =cut
 
-BEGIN {
-	require 5.005;
-}
+use 5.005;
 use strict;
 use overload     ();
 use Exporter     ();
@@ -65,7 +63,7 @@ use Scalar::Util ();
 
 use vars qw{$VERSION @ISA @EXPORT_OK %EXPORT_TAGS};
 BEGIN {
-	$VERSION   = '0.32_01';
+	$VERSION   = '0.33';
 	@ISA       = 'Exporter';
 
 	@EXPORT_OK = qw{
@@ -737,7 +735,7 @@ L<Params::Validate>, L<http://ali.as/>
 
 =head1 COPYRIGHT
 
-Copyright 2005, 2006 Adam Kennedy.
+Copyright 2005  - 2008 Adam Kennedy.
 
 This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
