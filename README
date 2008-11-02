@@ -288,6 +288,13 @@ FUNCTIONS
     Returns the object itself as a convenience, or "undef" if the value
     provided is not an object of that type.
 
+  _REGEX $value
+    The "_REGEX" function is intended to be imported into your package, and
+    provides a convenient way to test for a regular expression.
+
+    Returns the value itself as a convenience, or "undef" if the value
+    provided is not a regular expression.
+
   _SET \@array, $class
     The "_SET" function is intended to be imported into your package, and
     provides a convenient way to test for set of at least one object of a
@@ -354,8 +361,6 @@ TO DO
     - Add _CAN to help resolve the UNIVERSAL::can debacle
 
     - More comprehensive tests for _SET and _SET0
-
-    - Would be nice if someone would re-implement in XS for me? (done'ish)
 
     - Would be even nicer if someone would demonstrate how the hell to build
     a Module::Install dist of the ::Util dual Perl/XS type. :/
