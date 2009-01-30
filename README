@@ -249,7 +249,7 @@ FUNCTIONS
     For example:
 
       sub foo {
-          my $coed1 = _CODELIKE(shift) or die "No code param provided";
+          my $code1 = _CODELIKE(shift) or die "No code param provided";
           my $code2 = _CODELIKE(shift);
           if ( $code2 ) {
                print "Got optional second code param";
@@ -360,8 +360,6 @@ FUNCTIONS
 TO DO
     - Add _CAN to help resolve the UNIVERSAL::can debacle
 
-    - More comprehensive tests for _SET and _SET0
-
     - Would be even nicer if someone would demonstrate how the hell to build
     a Module::Install dist of the ::Util dual Perl/XS type. :/
 
@@ -381,10 +379,10 @@ AUTHOR
     Adam Kennedy <adamk@cpan.org>
 
 SEE ALSO
-    Params::Validate, <http://ali.as/>
+    Params::Validate
 
 COPYRIGHT
-    Copyright 2005 - 2008 Adam Kennedy.
+    Copyright 2005 - 2009 Adam Kennedy.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
