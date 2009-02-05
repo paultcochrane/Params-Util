@@ -159,9 +159,13 @@ CODE:
     if( SvROK(ref) )
     {
         svtype tp = SvTYPE(SvRV(ref));
+#if PERL_VERSION >= 11
+        if( ( SVt_REGEXP == tp ) )
+#else
         if( ( SVt_PVMG == tp ) && sv_isobject(ref)
          && ( 0 == strncmp( "Regexp", sv_reftype(SvRV(ref),TRUE),
                             strlen("Regexp") ) ) )
+#endif
         {
             ST(0) = ref;
             XSRETURN(1);
@@ -248,7 +252,7 @@ CODE:
 {
     if( SvMAGICAL(ref) )
         mg_get(ref);
-    if( is_hash(ref) && ( av_len((AV *)(SvRV(ref))) >= 1 ) )
+    if( is_hash(ref) && ( HvKEYS(SvRV(ref)) >= 1 ) )
     {
         ST(0) = ref;
         XSRETURN(1);
