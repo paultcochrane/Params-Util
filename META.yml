@@ -22,4 +22,4 @@ requires:
   perl: 5.00503
 resources:
   repository: http://svn.ali.as/cpan/trunk/Params-Util
-version: 0.37
+version: 0.38
