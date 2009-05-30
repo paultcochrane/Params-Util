@@ -1,5 +1,12 @@
 Revision history for Perl extension Params-Util
 
+1.00 Sun 31 May 2009
+	- Now all known XS bugs are worked out, I've removed
+	  the experimental flags and set that as the first 1+ release.
+	- Fixed XS implementation of _*LIKE and _INSTANCE
+	- Added test for a negative custom isa returning ('')
+	- Improving the 'clean' file list in a Makefile.PL
+
 0.38 Tue 17 Feb 2009
 	- Fix _IDENTIFIER to return false for "foo\n" (ZEFRAM)
 	- Fix _CLASS to return false for "foo\n" (ZEFRAM)
@@ -19,7 +26,7 @@ Revision history for Perl extension Params-Util
 	- CPAN Testers results look good, moving to production version
 
 0.34_01 Mon  3 Nov 2008
-	- Adding experimental XS implementation by the awesome Jens Renhack
+	- Adding experimental XS implementation by the awesome Jens Rehsack
 
 0.33 Tue 27 May 2008
 	- Upgrading to Module::Install 0.74

@@ -3,8 +3,11 @@ abstract: 'Simple, compact and correct param-checking functions'
 author:
   - 'Adam Kennedy <adamk@cpan.org>'
 build_requires:
+  ExtUtils::MakeMaker: 6.42
   File::Spec: 0.80
   Test::More: 0.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
 generated_by: hand
 license: perl
@@ -21,5 +24,6 @@ requires:
   Scalar::Util: 1.18
   perl: 5.00503
 resources:
+  ChangeLog: http://fisheye2.atlassian.com/changelog/cpan/trunk/Params-Util
   repository: http://svn.ali.as/cpan/trunk/Params-Util
-version: 0.38
+version: 1.00

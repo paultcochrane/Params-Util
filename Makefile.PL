@@ -16,17 +16,18 @@ unless ( defined $make_xs ) {
 }
 
 # Generate the non-XS tests if we are making the XS version
+my @tests = qw{
+	t/01_compile.t
+	t/02_main.t
+	t/03_all.t
+	t/04_codelike.t
+	t/05_typelike.t
+	t/06_invocant.t
+	t/07_handle.t
+	t/08_driver.t
+	t/09_insideout.t
+};
 if ( $make_xs ) {
-	my @tests = qw{
-		t/01_compile.t
-		t/02_util.t
-		t/03_all.t
-		t/04_codelike.t
-		t/05_typelike.t
-		t/06_invocant.t
-		t/07_handle.t
-		t/08_driver.t
-	};
 	foreach my $file ( @tests ) {
 		# Load the original
 		local *FILE;
@@ -37,13 +38,21 @@ if ( $make_xs ) {
 
 		# Convert it to a pure perl version
 		$file   =~ s/0/1/;
-		$buffer =~ s/0/1/;
+		$buffer =~ s/0;/1;/;
 
 		# Write the pure perl version
 		open( FILE, ">$file" ) or die("Failed to open '$file'");
 		print FILE $buffer;
 		close( FILE ) or die("Failed to close '$file'");
 	}
+}
+
+my @clean = (
+	# 'test.c',
+	'*.old'
+);
+if ( $make_xs ) {
+	push @clean, @tests;
 }
 
 WriteMakefile(
@@ -62,7 +71,7 @@ WriteMakefile(
 		return $hash;
 	},
 	clean         => {
-		FILES => ($make_xs ? 'test.c t/1*' : 'test.c')
+		FILES => join( ' ', @clean ),
 	},
 	PREREQ_PM     => {
 		'Scalar::Util' => '1.18',
