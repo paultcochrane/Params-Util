@@ -48,7 +48,6 @@ if ( $make_xs ) {
 }
 
 my @clean = (
-	# 'test.c',
 	'*.old'
 );
 if ( $make_xs ) {
