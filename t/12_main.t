@@ -7,7 +7,7 @@ BEGIN {
 	$ENV{PERL_PARAMS_UTIL_PP} ||= 1;
 }
 
-use Test::More tests => 634;
+use Test::More tests => 636;
 use File::Spec::Functions ':ALL';
 use Scalar::Util 'refaddr';
 use Params::Util ();
@@ -539,6 +539,8 @@ null( Params::Util::_HASH(\'foo'),       '...::_HASH(SCALAR) returns undef' );
 null( Params::Util::_HASH([ 'foo' ]),    '...::_HASH(ARRAY) returns undef' );
 null( Params::Util::_HASH(sub () { 1 }), '...::_HASH(CODE) returns undef' );
 null( Params::Util::_HASH({}),           '...::_HASH(empty HASH) returns undef' );
+null( Params::Util::_HASH(bless({"foo" => "bar"}, "TEST")),
+					 '...::_HASH(blessed HASH) returns undef' );
 
 # Test good things against the actual function (carefully)
 is( ref(Params::Util::_HASH({ foo => 1 })), 'HASH', '...::_HASH([undef]) returns ok' );
@@ -563,6 +565,8 @@ null( _HASH(\'foo'),       '_HASH(SCALAR) returns undef' );
 null( _HASH([]),           '_HASH(ARRAY) returns undef' );
 null( _HASH(sub () { 1 }), '_HASH(CODE) returns undef' );
 null( _HASH({}),           '...::_HASH(empty HASH) returns undef' );
+null( _HASH(bless({"foo" => "bar"}, "TEST")),
+			   '_HASH(blessed HASH) returns undef' );
 
 # Test good things against the actual function (carefully)
 is( ref(_HASH({ foo => 1 })), 'HASH', '_HASH([undef]) returns true' );
