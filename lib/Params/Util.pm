@@ -189,7 +189,8 @@ C<undef> if not.
 
 eval <<'END_PERL' unless defined &_CLASS;
 sub _CLASS ($) {
-	(defined $_[0] and ! ref $_[0] and $_[0] =~ m/^[^\W\d]\w*(?:::\w+)*\z/s) ? $_[0] : undef;
+        my $arg = $_[0];
+	(defined $arg and ! ref $arg and $arg =~ m/^[^\W\d]\w*(?:::\w+)*\z/s) ? $arg : undef;
 }
 END_PERL
 
