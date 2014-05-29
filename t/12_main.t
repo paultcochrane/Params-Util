@@ -7,7 +7,7 @@ BEGIN {
 	$ENV{PERL_PARAMS_UTIL_PP} ||= 1;
 }
 
-use Test::More tests => 632;
+use Test::More tests => 634;
 use File::Spec::Functions ':ALL';
 use Scalar::Util 'refaddr';
 use Params::Util ();
@@ -142,6 +142,12 @@ foreach my $ident ( qw{foo _foo foo1 __foo_1 Foo::Bar _Foo::Baaar::Baz X::1} ) {
 	is( Params::Util::_CLASS($ident), $ident, "...::_CLASS('$ident') returns ok" );
 }
 
+{
+    my $class_name = "A::B";
+    $class_name =~ /(.*)/;
+    is( Params::Util::_CLASS($1), $1, "...::_CLASS('$1') returns ok" );
+}
+
 # Import the function
 use_ok( 'Params::Util', '_CLASS' );
 ok( defined *_CLASS{CODE}, '_CLASS imported ok' );
@@ -166,6 +172,11 @@ foreach my $ident ( qw{foo _foo foo1 __foo_1 Foo::Bar _Foo::Baaar::Baz X::1} ) {
 	is( _CLASS($ident), $ident, "_CLASS('$ident') returns ok" );
 }
 
+{
+    my $class_name = "A::B";
+    $class_name =~ /(.*)/;
+    is( _CLASS($1), $1, "_CLASS('$1') returns ok" );
+}
 
 
 
