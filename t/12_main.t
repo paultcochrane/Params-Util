@@ -7,7 +7,7 @@ BEGIN {
 	$ENV{PERL_PARAMS_UTIL_PP} ||= 1;
 }
 
-use Test::More tests => 632;
+use Test::More tests => 634;
 use File::Spec::Functions ':ALL';
 use Scalar::Util 'refaddr';
 use Params::Util ();
@@ -439,6 +439,8 @@ null( Params::Util::_ARRAY(\'foo'),       '...::_ARRAY(SCALAR) returns undef' );
 null( Params::Util::_ARRAY({ foo => 1 }), '...::_ARRAY(HASH) returns undef' );
 null( Params::Util::_ARRAY(sub () { 1 }), '...::_ARRAY(CODE) returns undef' );
 null( Params::Util::_ARRAY([]),           '...::_ARRAY(empty ARRAY) returns undef' );
+null( Params::Util::_ARRAY( bless([1, 2, 3], "TEST") ),
+					  '...::_ARRAY(blessed ARRAY) returns undef' );
 
 # Test good things against the actual function (carefully)
 is( ref(Params::Util::_ARRAY([ undef ])), 'ARRAY', '...::_ARRAY([undef]) returns true' );
@@ -461,6 +463,8 @@ null( _ARRAY(\'foo'),       '_ARRAY(SCALAR) returns undef' );
 null( _ARRAY({ foo => 1 }), '_ARRAY(HASH) returns undef' );
 null( _ARRAY(sub () { 1 }), '_ARRAY(CODE) returns undef' );
 null( _ARRAY([]),           '_ARRAY(empty ARRAY) returns undef' );
+null( _ARRAY( bless([1, 2, 3], "TEST") ),
+			    '_ARRAY(blessed ARRAY) returns undef' );
 
 # Test good things against the actual function (carefully)
 is( ref(_ARRAY([ undef ])), 'ARRAY', '_ARRAY([undef]) returns true' );
